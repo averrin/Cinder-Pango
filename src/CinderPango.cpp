@@ -632,6 +632,32 @@ std::vector<std::string> CinderPango::getFontList(bool verbose) {
 	return fontList;
 }
 
+PangoRectangle CinderPango::getRect(int index, int length) {
+    PangoRectangle rect = { 0 };
+    pango_layout_index_to_pos(pangoLayout, index, &rect);
+    PangoRectangle rect2 = { 0 };
+    pango_layout_index_to_pos(pangoLayout, index + length, &rect2);
+    rect.x = rect.x / PANGO_SCALE;
+    rect.y = rect.y / PANGO_SCALE;
+    if (length > 0) {
+        rect.width = (rect2.x + rect2.width) / PANGO_SCALE - rect.x;
+    } else {
+        rect.width = rect.width / PANGO_SCALE;
+    }
+    rect.height = rect.height / PANGO_SCALE;
+
+    // std::cout << index << " | " << length << std::endl;
+    // std::cout << rect.x << "x " <<
+    //     rect.y << "y " <<
+    //     rect.x + rect.width << "x2 " <<
+    //     rect.y + rect.height << "y2" << std::endl;
+    return rect;
+}
+
+int CinderPango::getCount() {
+    return pango_layout_get_character_count(pangoLayout);
+}
+
 void CinderPango::logFontList(bool verbose) {
 	auto fontList = getFontList(verbose);
 

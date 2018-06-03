@@ -17,6 +17,7 @@
 #include <pango/pangocairo.h>
 
 #include <vector>
+#include <memory>
 
 namespace kp {
 namespace pango {
@@ -129,6 +130,9 @@ public:
 
 	float getSpacing();
 	void setSpacing(float spacing);
+
+    int getCount();
+    PangoRectangle getRect(int index, int length);
 
 	// Renders text into the texture.
 	// Returns true if the texture was actually pdated, false if nothing had to change
