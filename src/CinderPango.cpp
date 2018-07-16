@@ -654,6 +654,10 @@ PangoRectangle CinderPango::getRect(int index, int length) {
     return rect;
 }
 
+void CinderPango::disableWrap() {
+	pango_layout_set_width(pangoLayout, -1);
+}
+
 int CinderPango::getCount() {
     return pango_layout_get_character_count(pangoLayout);
 }

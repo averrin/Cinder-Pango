@@ -128,6 +128,8 @@ public:
 	bool getDefaultTextItalicsEnabled();
 	void setDefaultTextItalicsEnabled(bool value);
 
+	void disableWrap();
+
 	float getSpacing();
 	void setSpacing(float spacing);
 
